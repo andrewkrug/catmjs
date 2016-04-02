@@ -7,17 +7,19 @@
     <script src="html5-qrcode.js"></script>
     <script>
       currentBalance = 1
-      
+      console.log("test") 
       var serialport = require('serialport');
       var SerialPort = serialport.SerialPort;
       var sp = new SerialPort("/dev/ttyACM0", {
         baudrate: 9600,
-        parser: serialport.parsers.readline('\r\n')
+        parser: serialport.parsers.raw
       });
       sp.on("open", function () {
         console.log('open');
         sp.on('data', function(data) {
+            console.log(data)
             currentBalance = parseInt(currentBalance) + parseInt(data);
+            console.log(currentBalance)
             $("#currentBalance").html(accounting.formatMoney(currentBalance));
             balanceUP();
         });
@@ -52,7 +54,7 @@
           console.log("Video Not On");
         }
         clearInterval(ticker);
-        sleep(1000);
+        //sleep(1000);
         $( "#coinInfo" ).hide();
         $( "#loading" ).hide();
         $( "#selectCoin" ).show();
@@ -64,7 +66,7 @@
       $( document ).ready(function() {
           reset();
           $( "#completed" ).hide();
-          //setInterval(checkBalance,1000);
+         // setInterval(checkBalance,1000);
       });
 
       function checkBalance() {

@@ -4,8 +4,8 @@
     "main": "index.html",
     "chromium-args": "--ignore-certificate-errors",
     "window": {
-        "toolbar": false,
+        "toolbar": true,
 	"frame": false,
-	"fullscreen": true
+	"fullscreen": false
     }
 }
